@@ -115,3 +115,15 @@ resource "aws_nat_gateway" "nat_gateway" {
     Name = "demo_nat_gateway"
   }
 }
+
+resource "aws_instance" "web" {
+  ami           = "ami-04581fbf744a7d11f"
+  instance_type = "t2.micro"
+
+  subnet_id              = "subnet-057fc91adb7daaf77"
+  vpc_security_group_ids = ["sg-0192050cc1481bf1c"]
+
+  tags = {
+    "Terraform" = "true"
+  }
+}
