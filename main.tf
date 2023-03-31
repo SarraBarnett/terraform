@@ -7,6 +7,12 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 data "aws_region" "current" {}
 
+locals {
+  team        = "api_mgmt_dev"
+  application = "corp_api"
+  server_name = "ec2-${var.environment}-api-${var.variables_sub_az}"
+}
+
 #Define the VPC 
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
@@ -124,7 +130,9 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = ["sg-0ab5ca6ab392c4929"]
 
   tags = {
-    "Terraform" = "true"
+    Name  = local.server_name
+    Owner = local.team
+    App   = local.application
   }
 }
 
@@ -138,3 +146,4 @@ resource "aws_subnet" "variables-subnet" {
     Terraform = "true"
   }
 }
+
