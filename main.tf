@@ -21,6 +21,7 @@ resource "aws_vpc" "vpc" {
     Name        = var.vpc_name
     Environment = "demo_environment"
     Terraform   = "true"
+    Region      = data.aws_region.current.name
   }
 }
 
@@ -122,13 +123,26 @@ resource "aws_nat_gateway" "nat_gateway" {
   }
 }
 
-resource "aws_instance" "web" {
-  ami           = "ami-04581fbf744a7d11f"
-  instance_type = "t2.micro"
+# Terraform Data Block - Lookup Ubuntu 16.04
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+  }
 
-  subnet_id              = "subnet-075729980ae7ac2d9"
-  vpc_security_group_ids = ["sg-0ab5ca6ab392c4929"]
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  owners = ["099720109477"]
+}
 
+resource "aws_instance" "web_server" {
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.public_subnets["public_subnet_1"].id
+  associate_public_ip_address = true
   tags = {
     Name  = local.server_name
     Owner = local.team
