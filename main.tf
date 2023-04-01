@@ -1,3 +1,8 @@
+/* 
+Name: IaC Buildout for Terraform Associate Exam
+Description: AWS Infrastructure Buildout
+*/
+
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
@@ -161,3 +166,11 @@ resource "aws_subnet" "variables-subnet" {
   }
 }
 
+resource "tls_private_key" "generated" {
+  algorithm = "RSA"
+}
+
+resource "local_file" "private_key_pem" {
+  content  = tls_private_key.generated.private_key_pem
+  filename = "MyAWSKey.pem"
+}
