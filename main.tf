@@ -297,6 +297,7 @@ resource "aws_instance" "web_server" {
   }
   provisioner "remote-exec" {
     inline = [
+      "exit 2",
       "sudo rm -rf /tmp",
       "sudo git clone https://github.com/hashicorp/demo-terraform-101 /tmp",
       "sudo sh /tmp/assets/setup-web.sh",
