@@ -309,3 +309,7 @@ resource "aws_instance" "web_server" {
     ignore_changes = [security_groups]
   }
 }
+
+resource "aws_instance" "aws_linux" {
+  
+}
