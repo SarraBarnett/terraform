@@ -1,0 +1,91 @@
+2023-04-05T20:13:04.746Z [INFO]  Terraform version: 1.4.2
+2023-04-05T20:13:04.749Z [DEBUG] using github.com/hashicorp/go-tfe v1.18.0
+2023-04-05T20:13:04.749Z [DEBUG] using github.com/hashicorp/hcl/v2 v2.16.2
+2023-04-05T20:13:04.749Z [DEBUG] using github.com/hashicorp/terraform-config-inspect v0.0.0-20210209133302-4fd17a0faac2
+2023-04-05T20:13:04.749Z [DEBUG] using github.com/hashicorp/terraform-svchost v0.1.0
+2023-04-05T20:13:04.749Z [DEBUG] using github.com/zclconf/go-cty v1.12.1
+2023-04-05T20:13:04.749Z [INFO]  Go runtime version: go1.19.6
+2023-04-05T20:13:04.749Z [INFO]  CLI args: []string{"terraform", "init", "-upgrade"}
+2023-04-05T20:13:04.750Z [TRACE] Stdout is a terminal of width 85
+2023-04-05T20:13:04.750Z [TRACE] Stderr is a terminal of width 85
+2023-04-05T20:13:04.750Z [TRACE] Stdin is a terminal
+2023-04-05T20:13:04.750Z [DEBUG] Attempting to open CLI config file: /home/ec2-user/.terraformrc
+2023-04-05T20:13:04.750Z [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2023-04-05T20:13:04.750Z [DEBUG] ignoring non-existing provider search directory terraform.d/plugins
+2023-04-05T20:13:04.750Z [DEBUG] ignoring non-existing provider search directory /home/ec2-user/.terraform.d/plugins
+2023-04-05T20:13:04.750Z [DEBUG] ignoring non-existing provider search directory /home/ec2-user/.local/share/terraform/plugins
+2023-04-05T20:13:04.750Z [DEBUG] ignoring non-existing provider search directory /usr/local/share/terraform/plugins
+2023-04-05T20:13:04.750Z [DEBUG] ignoring non-existing provider search directory /usr/share/terraform/plugins
+2023-04-05T20:13:04.756Z [INFO]  CLI command args: []string{"init", "-upgrade"}
+2023-04-05T20:13:04.792Z [TRACE] Meta.Backend: no config given or present on disk, so returning nil config
+2023-04-05T20:13:04.795Z [TRACE] Meta.Backend: backend has not previously been initialized in this working directory
+2023-04-05T20:13:04.795Z [DEBUG] New state was assigned lineage "475b5077-d069-d9eb-e5c7-0c923e78260d"
+2023-04-05T20:13:04.795Z [TRACE] Meta.Backend: using default local state only (no backend configuration, and no existing initialized backend)
+2023-04-05T20:13:04.795Z [TRACE] Meta.Backend: instantiated backend of type <nil>
+2023-04-05T20:13:04.800Z [TRACE] providercache.fillMetaCache: scanning directory .terraform/providers
+2023-04-05T20:13:04.800Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/aws v3.76.1 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/aws/3.76.1/linux_amd64
+2023-04-05T20:13:04.800Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/aws v4.60.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/aws/4.60.0/linux_amd64
+2023-04-05T20:13:04.800Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/aws v4.61.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/aws/4.61.0/linux_amd64
+2023-04-05T20:13:04.800Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/http v2.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/http/2.1.0/linux_amd64
+2023-04-05T20:13:04.801Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/local v2.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/local/2.1.0/linux_amd64
+2023-04-05T20:13:04.801Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/random v3.0.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/random/3.0.0/linux_amd64
+2023-04-05T20:13:04.801Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/random v3.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/random/3.1.0/linux_amd64
+2023-04-05T20:13:04.801Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/random v3.4.3 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/random/3.4.3/linux_amd64
+2023-04-05T20:13:04.801Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/tls v3.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/tls/3.1.0/linux_amd64
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/local/2.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/local 2.1.0
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/random/3.0.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/random 3.0.0
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/random/3.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/random 3.1.0
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/random/3.4.3/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/random 3.4.3
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/tls/3.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/tls 3.1.0
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/aws/3.76.1/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/aws 3.76.1
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/aws/4.60.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/aws 4.60.0
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/aws/4.61.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/aws 4.61.0
+2023-04-05T20:13:04.801Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/http/2.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/http 2.1.0
+2023-04-05T20:13:07.994Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:08.094Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:08.245Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:08.411Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:08.563Z [DEBUG] checking for provisioner in "."
+2023-04-05T20:13:08.570Z [DEBUG] checking for provisioner in "/usr/bin"
+2023-04-05T20:13:08.572Z [TRACE] Meta.Backend: backend <nil> does not support operations, so wrapping it in a local backend
+2023-04-05T20:13:08.574Z [TRACE] backend/local: state manager for workspace "default" will:
+ - read initial snapshot from terraform.tfstate
+ - write new snapshots to terraform.tfstate
+ - create any backup at terraform.tfstate.backup
+2023-04-05T20:13:08.574Z [TRACE] statemgr.Filesystem: reading initial snapshot from terraform.tfstate
+2023-04-05T20:13:08.595Z [TRACE] statemgr.Filesystem: read snapshot with lineage "2b4acfd8-7880-a53a-033b-2047abc0e8f5" serial 254
+2023-04-05T20:13:08.603Z [DEBUG] Service discovery for registry.terraform.io at https://registry.terraform.io/.well-known/terraform.json
+2023-04-05T20:13:08.611Z [TRACE] HTTP client GET request to https://registry.terraform.io/.well-known/terraform.json
+2023-04-05T20:13:08.646Z [DEBUG] GET https://registry.terraform.io/v1/providers/hashicorp/random/versions
+2023-04-05T20:13:08.649Z [TRACE] HTTP client GET request to https://registry.terraform.io/v1/providers/hashicorp/random/versions
+2023-04-05T20:13:08.663Z [DEBUG] GET https://registry.terraform.io/v1/providers/hashicorp/local/versions
+2023-04-05T20:13:08.663Z [TRACE] HTTP client GET request to https://registry.terraform.io/v1/providers/hashicorp/local/versions
+2023-04-05T20:13:08.682Z [DEBUG] GET https://registry.terraform.io/v1/providers/hashicorp/tls/versions
+2023-04-05T20:13:08.682Z [TRACE] HTTP client GET request to https://registry.terraform.io/v1/providers/hashicorp/tls/versions
+2023-04-05T20:13:08.692Z [DEBUG] GET https://registry.terraform.io/v1/providers/hashicorp/aws/versions
+2023-04-05T20:13:08.692Z [TRACE] HTTP client GET request to https://registry.terraform.io/v1/providers/hashicorp/aws/versions
+2023-04-05T20:13:08.715Z [DEBUG] GET https://registry.terraform.io/v1/providers/hashicorp/http/versions
+2023-04-05T20:13:08.733Z [TRACE] HTTP client GET request to https://registry.terraform.io/v1/providers/hashicorp/http/versions
+2023-04-05T20:13:08.746Z [TRACE] providercache.fillMetaCache: scanning directory .terraform/providers
+2023-04-05T20:13:08.748Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/aws v3.76.1 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/aws/3.76.1/linux_amd64
+2023-04-05T20:13:08.750Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/aws v4.60.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/aws/4.60.0/linux_amd64
+2023-04-05T20:13:08.750Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/aws v4.61.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/aws/4.61.0/linux_amd64
+2023-04-05T20:13:08.750Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/http v2.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/http/2.1.0/linux_amd64
+2023-04-05T20:13:08.750Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/local v2.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/local/2.1.0/linux_amd64
+2023-04-05T20:13:08.750Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/random v3.0.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/random/3.0.0/linux_amd64
+2023-04-05T20:13:08.751Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/random v3.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/random/3.1.0/linux_amd64
+2023-04-05T20:13:08.751Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/random v3.4.3 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/random/3.4.3/linux_amd64
+2023-04-05T20:13:08.751Z [TRACE] getproviders.SearchLocalDirectory: found registry.terraform.io/hashicorp/tls v3.1.0 for linux_amd64 at .terraform/providers/registry.terraform.io/hashicorp/tls/3.1.0/linux_amd64
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/aws/3.76.1/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/aws 3.76.1
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/aws/4.60.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/aws 4.60.0
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/aws/4.61.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/aws 4.61.0
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/http/2.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/http 2.1.0
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/local/2.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/local 2.1.0
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/random/3.0.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/random 3.0.0
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/random/3.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/random 3.1.0
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/random/3.4.3/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/random 3.4.3
+2023-04-05T20:13:08.751Z [TRACE] providercache.fillMetaCache: including .terraform/providers/registry.terraform.io/hashicorp/tls/3.1.0/linux_amd64 as a candidate package for registry.terraform.io/hashicorp/tls 3.1.0
+2023-04-05T20:13:08.810Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:08.865Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:08.919Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
+2023-04-05T20:13:10.181Z [TRACE] providercache.fillMetaCache: using cached result from previous scan of .terraform/providers
