@@ -6,13 +6,13 @@ Contributors: Bryan and Gabe
 
 provider "aws" {
   region = "us-east-1"
-  default_tags = {
+  default_tags {
     tags = {
       Environment = terraform.workspace
       Owner       = "TF Hands On Lab"
       Project     = "Infrastructure as Code"
       Terraform   = "true"
-    }
+    }  
   }
 }
 
@@ -66,19 +66,6 @@ resource "aws_route_table" "public_route_table" {
   }
   tags = {
     Name      = "demo_public_rtb"
-    Terraform = "true"
-  }
-}
-
-resource "aws_route_table" "private_route_table" {
-  vpc_id = aws_vpc.vpc.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    # gateway_id = aws_internet_gateway.internet_gateway.id
-    nat_gateway_id = aws_nat_gateway.nat_gateway.id
-  }
-  tags = {
-    Name      = "demo_private_rtb"
     Terraform = "true"
   }
 }
@@ -162,7 +149,7 @@ data "aws_ami" "ubuntu" {
 }
 
 # Terraform Resource Block - To Build EC2 instance in Public Subnet
-resource "aws_instance" "web_server" {
+resource "aws_instance" "ubuntu_server" {
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.public_subnets["public_subnet_1"].id
