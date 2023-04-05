@@ -6,6 +6,11 @@ Description: AWS Infrastructure Buildout
 # Configure the AWS Provider
 provider "aws" {
   region = "us-west-2"
+  default_tags {
+    tags = {
+      Environment = terraform.workspace
+    }
+  }
 }
 
 #Retrieve the list of AZs in the current AWS region
