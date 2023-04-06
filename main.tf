@@ -288,6 +288,10 @@ output "public_dns" {
   value = module.server.public_dns
 }
 
+output "size" {
+  value = module.server.size
+}
+
 output "public_ip_server_subnet_1" {
   value = module.server_subnet_1.public_ip
 }
