@@ -295,8 +295,7 @@ output "public_dns_server_subnet_1" {
 }
 
 module "autoscaling" {
-  source  = "terraform-aws-modules/autoscaling/aws"
-  version = "6.9.0"
+  source = "github.com/terraform-aws-modules/terraform-aws-autoscaling?ref=v4.9.0"
 
   # Autoscaling group
   name = "myasg"
@@ -309,11 +308,12 @@ module "autoscaling" {
   desired_capacity = 1
 
   # Launch template
-  create_launch_template = true
-  image_id               = data.aws_ami.ubuntu.id
-  instance_type          = "t3.micro"
-
-  tags = {
+  # Launch template
+  use_lt        = true
+  create_lt     = true
+  image_id      = data.aws_ami.ubuntu.id
+  instance_type = "t3.micro"
+  tags_as_map = {
     Name = "Web EC2 Server 2"
   }
 }
