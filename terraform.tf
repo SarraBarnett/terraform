@@ -1,12 +1,11 @@
 terraform {
-  backend "s3" {
-    bucket         = "my-terraform-state-sb"
-    key            = "prod/aws_infra"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-locks"
-    encrypt        = true
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "sarrabarnett"
+    workspaces {
+      name = "my-aws-app"
+    }
   }
-
 
   required_version = ">= 1.0.0"
   required_providers {
