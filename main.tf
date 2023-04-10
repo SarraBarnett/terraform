@@ -4,10 +4,10 @@ Description: AWS Infrastructure Buildout
 Contributors: Bryan and Gabe
 */
 provider "aws" {
-  region = "us-east-1"
+  region                   = "us-east-1"
   shared_credentials_files = ["/home/ec2-user/.aws/credentials"]
-  
-  
+
+
 
   default_tags {
     tags = {
