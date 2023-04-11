@@ -18,6 +18,26 @@ provider "aws" {
     }
   }
 }
+
+locals {
+  team         = "api_mgmt_dev"
+  application  = "corp_api"
+  service_name = "Automation"
+  app_team     = "Cloud Team"
+  createdby    = "terraform"
+}
+
+locals {
+  # Common tags to be assigned to all resources
+  common_tags = {
+    Owner     = local.team
+    App       = local.application
+    Service   = local.service_name
+    AppTeam   = local.app_team
+    CreatedBy = local.createdby
+  }
+}
+
 #Retrieve the list of AZs in the current AWS region
 data "aws_availability_zones" "available" {}
 data "aws_region" "current" {}
@@ -131,6 +151,7 @@ data "aws_ami" "ubuntu" {
   }
   owners = ["099720109477"]
 }
+
 # Terraform Resource Block - To Build EC2 instance in Public Subnet
 resource "aws_instance" "web_server" {
   ami           = data.aws_ami.ubuntu.id
@@ -145,12 +166,12 @@ resource "aws_instance" "web_server" {
     host        = self.public_ip
   }
   associate_public_ip_address = true
-  tags = {
-    Name = "Web EC2 Server"
-  }
+
+
   provisioner "local-exec" {
     command = "chmod 600 ${local_file.private_key_pem.filename}"
   }
+
   provisioner "remote-exec" {
     inline = [
       "git clone https://github.com/hashicorp/demo-terraform-101",
@@ -158,6 +179,7 @@ resource "aws_instance" "web_server" {
       "sudo sh /tmp/assets/setup-web.sh",
     ]
   }
+  tags = local.common_tags
 }
 # Terraform Resource Block - Security Group to Allow Ping Traffic
 resource "aws_security_group" "vpc-ping" {
