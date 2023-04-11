@@ -22,22 +22,22 @@ locals {
     last_name    = var.last_name
     phone_number = var.phone_number
   }
-  
+
   my_number = nonsensitive(var.phone_number)
 }
 
 output "first_name" {
-  value = local.contact_info.first_name
-  sensitive = true 
+  value     = local.contact_info.first_name
+  sensitive = true
 }
 
 output "last_name" {
-  value = local.contact_info.last_name
+  value     = local.contact_info.last_name
   sensitive = true
 }
 
 output "phone_number" {
-  value = local.contact_info.phone_number
+  value     = local.contact_info.phone_number
   sensitive = true
 }
 
