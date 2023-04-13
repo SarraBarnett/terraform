@@ -308,23 +308,6 @@ module "server_subnet_1" {
   aws_security_group.vpc-web.id]
 }
 
-output "public_ip" {
-  value = module.server.public_ip
-}
-output "public_dns" {
-  value = module.server.public_dns
-}
-
-output "size" {
-  value = module.server.size
-}
-
-output "public_ip_server_subnet_1" {
-  value = module.server_subnet_1.public_ip
-}
-output "public_dns_server_subnet_1" {
-  value = module.server_subnet_1.public_dns
-}
 
 module "autoscaling" {
   source = "github.com/terraform-aws-modules/terraform-aws-autoscaling?ref=v4.9.0"
