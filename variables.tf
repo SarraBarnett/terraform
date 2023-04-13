@@ -42,3 +42,8 @@ variable "variables_sub_auto_ip" {
   type        = bool
   default     = true
 }
+
+variable "phone_number" {
+  type      = string
+  sensitive = true
+}
