@@ -25,6 +25,12 @@ variable "public_subnets" {
   }
 }
 
+variable "environment" {
+  description = "Environment for deployment"
+  type        = string
+  default     = "dev"
+}
+
 variable "variables_sub_cidr" {
   description = "CIDR Block for the Variables Subnet"
   type        = string
@@ -43,7 +49,76 @@ variable "variables_sub_auto_ip" {
   default     = true
 }
 
-variable "phone_number" {
-  type      = string
-  sensitive = true
+variable "us-east-1-azs" {
+  type = list(string)
+  default = [
+    "us-east-1a",
+    "us-east-1b",
+    "us-east-1c",
+    "us-east-1d",
+    "us-east-1e"
+  ]
+}
+
+variable "ip" {
+  type = map(string)
+  default = {
+    prod = "10.0.150.0/24"
+    dev  = "10.0.250.0/24"
+  }
+}
+
+variable "env" {
+  type = map(any)
+  default = {
+    prod = {
+      ip = "10.0.150.0/24"
+      az = "us-east-1a"
+    }
+    dev = {
+      ip = "10.0.250.0/24"
+      az = "us-east-1e"
+    }
+  }
+}
+
+variable "num_1" {
+  type        = number
+  description = "Numbers for function labs"
+  default     = 88
+}
+variable "num_2" {
+  type        = number
+  description = "Numbers for function labs"
+  default     = 73
+}
+variable "num_3" {
+  type        = number
+  description = "Numbers for function labs"
+  default     = 52
+}
+
+variable "web_ingress" {
+  type = map(object(
+    {
+      description = string
+      port        = number
+      protocol    = string
+      cidr_blocks = list(string)
+    }
+  ))
+  default = {
+    "80" = {
+      description = "Port 80"
+      port        = 80
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+    "443" = {
+      description = "Port 443"
+      port        = 443
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
 }
