@@ -46,9 +46,9 @@ data "aws_region" "current" {}
 resource "aws_vpc" "vpc" {
   cidr_block = var.vpc_cidr
   tags = {
-    Name        = var.vpc_name
-    Environment = "stage"
-    Terraform   = "true"
+    Name        = upper(var.vpc_name)
+    Environment = upper(var.environment)
+    Terraform   = upper("true")
   }
 }
 #Deploy the private subnets
@@ -168,9 +168,9 @@ resource "aws_instance" "web_server" {
   associate_public_ip_address = true
 
 
-  provisioner "local-exec" {
+  /* provisioner "local-exec" {
     command = "chmod 600 ${local_file.private_key_pem.filename}"
-  }
+  } */
 
   provisioner "remote-exec" {
     inline = [
@@ -225,10 +225,10 @@ data "aws_ami" "windows_2019" {
 resource "tls_private_key" "generated" {
   algorithm = "RSA"
 }
-resource "local_file" "private_key_pem" {
-  content  = tls_private_key.generated.private_key_pem
-  filename = "MyAWSKey.pem"
-}
+# resource "local_file" "private_key_pem" {
+#  content  = tls_private_key.generated.private_key_pem
+#  filename = "MyAWSKey.pem"
+# }
 resource "aws_key_pair" "generated" {
   key_name   = "MyAWSKey"
   public_key = tls_private_key.generated.public_key_openssh
@@ -305,7 +305,8 @@ module "server_subnet_1" {
   subnet_id   = aws_subnet.public_subnets["public_subnet_1"].id
   security_groups = [aws_security_group.vpc-ping.id,
     aws_security_group.ingress-ssh.id,
-  aws_security_group.vpc-web.id]
+    aws_security_group.vpc-web.id,
+  aws_security_group.main.id]
 }
 
 
@@ -369,5 +370,78 @@ resource "aws_instance" "web_server_2" {
   subnet_id     = aws_subnet.public_subnets["public_subnet_2"].id
   tags = {
     Name = "Web EC2 Server"
+  }
+}
+
+resource "aws_subnet" "list_subnet" {
+  for_each          = var.env
+  vpc_id            = aws_vpc.vpc.id
+  cidr_block        = each.value.ip
+  availability_zone = each.value.az
+}
+
+data "aws_s3_bucket" "data_bucket" {
+  bucket = "my-data-lookup-bucket-sb"
+}
+
+resource "aws_iam_policy" "policy" {
+  name        = "data_bucket_policy"
+  description = "Deny access to my bucket"
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "s3:Get*",
+          "s3:List*"
+        ],
+        "Resource" : "${data.aws_s3_bucket.data_bucket.arn}"
+      }
+    ]
+  })
+}
+
+output "data-bucket-arn" {
+  value = data.aws_s3_bucket.data_bucket.arn
+}
+
+output "data-bucket-domain-name" {
+  value = data.aws_s3_bucket.data_bucket.bucket_domain_name
+}
+
+output "data-bucket-region" {
+  value = "The ${data.aws_s3_bucket.data_bucket.id} bucket is located in ${data.aws_s3_bucket.data_bucket.region}"
+}
+
+locals {
+  maximum = max(var.num_1, var.num_2, var.num_3)
+  minimum = min(var.num_1, var.num_2, var.num_3, 44, 20)
+}
+output "max_value" {
+  value = local.maximum
+}
+output "min_value" {
+  value = local.minimum
+}
+
+
+resource "aws_security_group" "main" {
+  name   = "core-sg-global"
+  vpc_id = aws_vpc.vpc.id
+
+  dynamic "ingress" {
+    for_each = var.web_ingress
+    content {
+      description = ingress.value.description
+      from_port   = ingress.value.port
+      to_port     = ingress.value.port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
+  }
+  
+  lifecycle {
+    create_before_destroy = true
   }
 }
