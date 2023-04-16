@@ -25,12 +25,6 @@ variable "public_subnets" {
   }
 }
 
-variable "environment" {
-  description = "Environment for deployment"
-  type        = string
-  default     = "dev"
-}
-
 variable "variables_sub_cidr" {
   description = "CIDR Block for the Variables Subnet"
   type        = string
@@ -121,4 +115,10 @@ variable "web_ingress" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
+}
+
+variable "environment" {
+  type        = string
+  description = "Infrastructure environment. eg. dev, prod, etc"
+  default     = "test"
 }
