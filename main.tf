@@ -230,7 +230,7 @@ resource "tls_private_key" "generated" {
 #  filename = "MyAWSKey.pem"
 # }
 resource "aws_key_pair" "generated" {
-  key_name   = "MyAWSKey"
+  key_name   = "MyAWSKey${var.environment}"
   public_key = tls_private_key.generated.public_key_openssh
   lifecycle {
     ignore_changes = [key_name]
@@ -427,7 +427,7 @@ output "min_value" {
 
 
 resource "aws_security_group" "main" {
-  name   = "core-sg-global"
+  name   = "core-sg"
   vpc_id = aws_vpc.vpc.id
 
   dynamic "ingress" {
@@ -439,10 +439,5 @@ resource "aws_security_group" "main" {
       protocol    = ingress.value.protocol
       cidr_blocks = ingress.value.cidr_blocks
     }
-  }
-  
-  lifecycle {
-    create_before_destroy = true
-    # prevent_destroy = true 
   }
 }
